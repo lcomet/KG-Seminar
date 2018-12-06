@@ -6,6 +6,8 @@
 %
 \usepackage{graphicx}
 \usepackage{todonotes}
+\usepackage{verbatim}
+\usepackage{caption}
 % Used for displaying a sample figure. If possible, figure files should
 % be included in EPS format.
 %
@@ -62,7 +64,12 @@ First of all, for a better understanding, it is important to clarify the main co
 Currently there is not a common definition of Knowledge Graphs and still exist some confusion on the use of the term, because of the Google's implementation of its own Knowledge Graph, which is a semantic complement to the search engine.\cite{Ehrlinger}. More over, \cite{Ehrlinger} emphasizes that the definitions in the context of Knowledge Graphs by the Journal of Web Semantics and by the Semantic Web Company could be used to refer to the definition of Ontology without involving graph structures. 
 In the definition presented by \cite{Paulheim}, "a knowledge graph
 1) mainly describes real world entities and their interrelations, organized in a graph, 2) defines possible classes and relations of entities in a schema, 3) allows for potentially interrelating arbitrary entities with each other, and 4) covers various topical domains". A more formal definition which is also more focused on the context of Linked Data, is the one proposed by \cite{Farber} "Since in the Semantic Web RDF graphs are used we use the term knowledge graph for any RDF graph. An RDF graph consists of a finite set of RDF triples where each RDF triple (s, p, o) is an ordered set of the following RDF terms: a subject s ∈ U ∪ B, a predicate p ∈ U, and an object o ∈ U ∪ B ∪ L. An RDF term is either a URI u ∈ U, a blank node b ∈ B,or a literal l ∈ L. U, B, and L are infinite sets and pairwise disjoint".
-\subsection{Knowledge Bases}
+It is important to observe, the confusions related to the use of the term, as described in \cite{Ehrlinger}, when using interchangeably the terms Knowledge Bases, Knowledge Vault, Knowledge Graphs, and Ontology, as well as when referring to the implementation of Google’s Knowledge Graph. While there exists differences between the scope and techniques used in each of those terms.
+\subsection{Knowledge-based systems}
+A knowledge-based system is also called an expert system, and is part of one of the areas of Artificial Intelligence.\cite{Tripathi}
+On the other hand, \cite{Engelmore} indicates that a knowledge base it can be described as a global data base which is part of the implementation dimension of an expert system, and that contains among others: facts, rules, and relations. Moreover, \cite{Engelmore} mentions that one of the key profit of having an expert system is the improvement on quality of the tasks related to decision making.
+The expert systems aim to acquire expert knowledge in the context of a particular domain. That knowledge comes from a human expert and then is available to other users which does not have such expertise. \cite{Tripathi}
+
 \subsection{Clustering}
 Clustering has become a valid and well-establish tool to make sense of the big amount of data that we face nowadays, and helps to take decision based on data. Clustering helps in the exploration of huge amount of data. \cite{Pedrycz}
 
@@ -73,7 +80,7 @@ It is required to be careful in the selection of algorithms and concepts
 
 \subsection{Distance and Similarity}
 
-\subsection{...}
+\subsection{Other concepts}
 
 \section{State of the Art}
 In this section we present novel and also more traditional techniques and algorithms used in the field of Knowledge Graph clustering. 
@@ -87,6 +94,21 @@ Revision in more detail the selected algorithms and techniques
 Present the work of \cite{Schmitz} where they introduce the approach of semantic self-descriptions to be publish among peers and for which they use a clustering algorithm to obtain that self-description.
 
 \subsubsection{Structural similarity clustering entities}
+
+\subsubsection{Entity Clustering using link features}
+
+\begin{center}
+\includegraphics[width=1\textwidth]{clip_example.png}
+\captionof{figure}{Example of CLIP \cite{Saeedi}}
+\end{center}
+
+\begin{center}
+\includegraphics[width=1\textwidth]{clip_overlap_resolution.png}
+\captionof{figure}{Overlapping resolution on CLIP \cite{Saeedi}}
+\end{center}
+
+
+
 
 \section{Analysis and comparison of presented approaches}
 \section{Discussion}
@@ -129,6 +151,17 @@ Paulheim, H.: Knowledge Graph Refinement: A Survey of Approaches and Evaluation 
 \bibitem{Farber}
 F{\"a}rber, M., Bartscherer, F, Menne,C., Rettinger, A.: Linked data quality of DBpedia, Freebase, OpenCyc, Wikidata, and YAGO. Semantic Web Journal, 77--129 (2018). \doi{10.3233/SW-170275}
 
+\bibitem{Tripathi}
+Tripathi, K.: A Review on Knowledge-based Expert System: Concept and Architecture. IJCA Special Issue on Artificial Intelligence Techniques-Novel Approaches \& Practical Applications (2011). \doi{10.5120/2845-226}
+
+\bibitem{Engelmore}
+Engelmore R.S.  : Artificial Intelligence and Knowledge Based Systems: Origins, Methods and Opportunities for NDE. In: Thompson D.O., Chimenti D.E. (eds.) Review of Progress in Quantitative Nondestructive Evaluation. Review of Progress in Quantitative Nondestructive Evaluation, vol. 6 A., 
+Springer, Boston, MA (1987). \doi{10.1007/978-1-4613-1893-4\_1}
+
+
+\end{thebibliography}
+
+\begin{comment}
 \bibitem{ref_lncs1}
 Author, F., Author, S.: Title of a proceedings paper. In: Editor,
 F., Editor, S. (eds.) CONFERENCE 2016, LNCS, vol. 9999, pp. 1--13.
@@ -148,7 +181,8 @@ on Proceedings, pp. 1--2. Publisher, Location (2010)
 \bibitem{ref_url1}
 LNCS Homepage, \url{http://www.springer.com/lncs}. Last accessed 4
 Oct 2017
-\end{thebibliography}
+
+\end{comment}
 \end{document}
 
 
