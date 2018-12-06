@@ -5,6 +5,7 @@
 \documentclass[runningheads]{llncs}
 %
 \usepackage{graphicx}
+\usepackage{todonotes}
 % Used for displaying a sample figure. If possible, figure files should
 % be included in EPS format.
 %
@@ -20,9 +21,9 @@
 % If the paper title is too long for the running head, you can set
 % an abbreviated paper title here
 %
-\author{Lina Teresa Molinas Comet\inst{1}}
+\author{Lina Teresa Molinas Comet}
 %
-\authorrunning{F. Author et al.}
+\authorrunning{Lina Teresa Molinas Comet.}
 % First names are abbreviated in the running head.
 % If there are more than two authors, 'et al.' is used.
 %
@@ -33,87 +34,64 @@
 \maketitle              % typeset the header of the contribution
 %
 \begin{abstract}
-Stories always have been present in human’s life, whether in forms of speeches or images helping to transmit messages and knowledge between generations. Furthermore, there have been changes in the way of telling stories, and as a consequence nowadays the tendency is to present information with a combination of data (in form of graphs and visual representations) with other media tools such as video, voice, audio, and text with the aim of making the information more recognizable and the story more coherent, allowing interaction with the audience and getting their attention and awareness. As a result of this trend, we present an overview of the most interesting techniques and tools for visual storytelling, as well as the influence of the Semantic Web, and the Web in general for telling stories with a variety of purposes, such as promoting collaboration and the spread of knowledge.
+The era of data is here and we need to deal with a big amount of data in different presentations or formats. It is necessary the extraction of data in order to get a specific information and with it give value to data and get the expected insights, making sense of data. There are some issues with big data, that need to be address, one way is graph representation of data. This task is not easy because of the amount of data, as well as the complexity on its representation. One way of representing information, and which is getting more common is graph-based because of its benefits (\todo{look for definition of graph and benefits, see if KG allows integration of information about entities from multiple sources, and if clustering of equivalent entities from diff sources is the key factor in the construction of KG }). But it is important to analyze and compare different clustering techniques and algorithms to get the most from this kind of representation. We will present the benefits of clustering on KG. We will present some common problems on graph clustering (like overlapping or inclusion of same entity in various clusters)
+It is possible to use unsupervised techniques in order to explore large-datasets (\todo{rephrase it})
+In this paper we present an overview of the most interesting techniques and algorithms design (approaches) with the purpose of improving clustering in graphs from a semantic perspective. We will revised in detail some of those algorithms in order to understand better, compare them and suggest the area of use specific to every case (presenting the pros and cons), and try to suggest the future of clustering.
+Clustering is a valid tool to be use in the exploration of data (big amount of data, vast)
 
 The abstract should briefly summarize the contents of the paper in
 15--250 words.
 
-\keywords{Knowledge Graphs  \and Clustering \and Knowledge Base}
+\keywords{Knowledge Graphs \and Clustering \and Knowledge Bases \and Algorithms}
 \end{abstract}
 %
 %
 %
 \section{Introduction}
-\subsection{A Subsection Sample}
-Please note that the first paragraph of a section or subsection is
-not indented. The first paragraph that follows a table, figure,
-equation etc. does not need an indent, either.
+Explain what and why is this paper here.
 
-Subsequent paragraphs, however, are indented.
+It is crucial to make sense of data but this task is challenged by the enormous amount of data in the era of information technology \cite{Pedrycz}
 
-\subsubsection{Sample Heading (Third Level)} Only two levels of
-headings should be numbered. Lower level headings remain unnumbered;
-they are formatted as run-in headings.
-
-\paragraph{Sample Heading (Fourth Level)}
-The contribution should contain no more than four levels of
-headings. Table~\ref{tab1} gives a summary of all heading levels.
-
-\begin{table}
-\caption{Table captions should be placed above the
-tables.}\label{tab1}
-\begin{tabular}{|l|l|l|}
-\hline
-Heading level &  Example & Font size and style\\
-\hline
-Title (centered) &  {\Large\bfseries Lecture Notes} & 14 point, bold\\
-1st-level heading &  {\large\bfseries 1 Introduction} & 12 point, bold\\
-2nd-level heading & {\bfseries 2.1 Printing Area} & 10 point, bold\\
-3rd-level heading & {\bfseries Run-in Heading in Bold.} Text follows & 10 point, bold\\
-4th-level heading & {\itshape Lowest Level Heading.} Text follows & 10 point, italic\\
-\hline
-\end{tabular}
-\end{table}
+Various fields, such as intelligent data analysis (IDA), data mining, and system modeling attempt to assist the tasks involved in the understanding of data and discovery of tendencies on data \cite{Pedrycz}
 
 
-\noindent Displayed equations are centered and set on a separate
-line.
-\begin{equation}
-x + y = z
-\end{equation}
-Please try to avoid rasterized images for line-art diagrams and
-schemas. Whenever possible, use vector graphics instead (see
-Fig.~\ref{fig1}).
+\section{Background}
+First of all, for a better understanding, it is important to clarify the main concepts related to the topic under study. In this section we present the core concepts associated with Knowledge Graphs and Clustering.
+\subsection{Graphs}
+\subsection{Knowledge Graphs}
+Currently there is not a common definition of Knowledge Graphs and still exist some confusion on the use of the term, because of the Google's implementation of its own Knowledge Graph, which is a semantic complement to the search engine.\cite{Ehrlinger}. More over, \cite{Ehrlinger} emphasizes that the definitions in the context of Knowledge Graphs by the Journal of Web Semantics and by the Semantic Web Company could be used to refer to the definition of Ontology without involving graph structures. 
+In the definition presented by \cite{Paulheim}, "a knowledge graph
+1) mainly describes real world entities and their interrelations, organized in a graph, 2) defines possible classes and relations of entities in a schema, 3) allows for potentially interrelating arbitrary entities with each other, and 4) covers various topical domains". A more formal definition which is also more focused on the context of Linked Data, is the one proposed by \cite{Farber} "Since in the Semantic Web RDF graphs are used we use the term knowledge graph for any RDF graph. An RDF graph consists of a finite set of RDF triples where each RDF triple (s, p, o) is an ordered set of the following RDF terms: a subject s ∈ U ∪ B, a predicate p ∈ U, and an object o ∈ U ∪ B ∪ L. An RDF term is either a URI u ∈ U, a blank node b ∈ B,or a literal l ∈ L. U, B, and L are infinite sets and pairwise disjoint".
+\subsection{Knowledge Bases}
+\subsection{Clustering}
+Clustering has become a valid and well-establish tool to make sense of the big amount of data that we face nowadays, and helps to take decision based on data. Clustering helps in the exploration of huge amount of data. \cite{Pedrycz}
 
-\begin{figure}
-\includegraphics[width=\textwidth]{fig1.eps}
-\caption{A figure caption is always placed below the illustration.
-Please note that short captions are centered, while long ones are
-justified by the macro package automatically.} \label{fig1}
-\end{figure}
+The use of clustering is well-suite for a variety of areas of application, for instance: engineering, economics, finance, biomedicine, biological sciences, etc. \cite{Pedrycz}
 
-\begin{theorem}
-This is a sample theorem. The run-in heading is set in bold, while
-the following text appears in italics. Definitions, lemmas,
-propositions, and corollaries are styled the same way.
-\end{theorem}
-%
-% the environments 'definition', 'lemma', 'proposition', 'corollary',
-% 'remark', and 'example' are defined in the LLNCS documentclass as well.
-%
-\begin{proof}
-Proofs, examples, and remarks have the initial word in italics,
-while the following text appears in normal font.
-\end{proof}
-For citations of references, we prefer the use of square brackets
-and consecutive numbers. Citations using labels or the author/year
-convention are also acceptable. The following bibliography provides
-a sample reference list with entries for journal
-articles~\cite{ref_article1}, an LNCS chapter~\cite{ref_lncs1}, a
-book~\cite{ref_book1}, proceedings without editors~\cite{ref_proc1},
-and a homepage~\cite{ref_url1}. Multiple citations are grouped
-\cite{ref_article1,ref_lncs1,ref_book1},
-\cite{ref_article1,ref_book1,ref_proc1,ref_url1}.
+The optimization in clustering is predominantly data-oriented. \cite{Pedrycz}
+It is required to be careful in the selection of algorithms and concepts 
+
+\subsection{Distance and Similarity}
+
+\subsection{...}
+
+\section{State of the Art}
+In this section we present novel and also more traditional techniques and algorithms used in the field of Knowledge Graph clustering. 
+
+\subsection{General Techniques for Knowledge Graph Clustering}
+Presentation of well-known techniques for graph clustering.
+
+\subsection{Techniques and Algorithms}
+Revision in more detail the selected algorithms and techniques 
+\subsubsection{Graph clustering for content aggregation for an Ontology-Based P2PKM}
+Present the work of \cite{Schmitz} where they introduce the approach of semantic self-descriptions to be publish among peers and for which they use a clustering algorithm to obtain that self-description.
+
+\subsubsection{Structural similarity clustering entities}
+
+\section{Analysis and comparison of presented approaches}
+\section{Discussion}
+\section{Conclusion}
+
 %
 % ---- Bibliography ----
 %
@@ -135,6 +113,21 @@ Elbattah, M., Roushdy, M., Aref, M., M.Salem, A.: Large-Scale Entity Clustering 
 Saaedi, A., Peukert, E., Rahm, E.  : Using Link Features for Entity Clustering in Knowledge Graphs. In: Gangemi, A., Navigli, R., Vidal, M., Hitzler, P., Troncy, R., Hollink, L., Tordai, A., Alam, M. (eds.) The Semantic Web. ESWC 2018, LNCS, vol. 10843, pp. 576--592.
 Springer International Publishing, Cham (2018). \doi{10.1007/978-3-319-93417-4\_37}
 
+\bibitem{Pedrycz}
+Pedrycz, W.: Knowledge-Based Clustering: From Data to Information Granules. 2nd edn. Wiley-Interscience, New York, NY, USA (2005)
+
+\bibitem{Zhang}
+Zhang, X., Lv, Y., Lin, E : Object Clustering in Linked Data using Centrality. In: Proceedings of China Conference on Knowledge Graph and Semantic Computing (CCKS2016)
+on Proceedings, pp. 172--183. Publisher, Location (2016). \doi{10.1007/978-981-10-3168-7\_17}
+
+\bibitem{Ehrlinger}
+Ehrlinger, L, W{\"o}{\ss}, W.: Towards a Definition of Knowledge Graphs. In: Martin, M., Cuquet M., Folmer, E. (eds.) In Joint Proceedings of the Posters and Demos Track of the 12th International Conference on Semantic Systems - SEMANTiCS2016 and the 1st International Workshop on Semantic Change \& Evolving Semantics (SuCCESS'16), CEUR-WS, vol. 1695, Leipzig, Germany (2016). \doi{10.10007/1234567890}
+
+\bibitem{Paulheim}
+Paulheim, H.: Knowledge Graph Refinement: A Survey of Approaches and Evaluation Methods. Semantic Web Journal, 489--508 (2017). \doi{10.3233/SW-160218}
+
+\bibitem{Farber}
+F{\"a}rber, M., Bartscherer, F, Menne,C., Rettinger, A.: Linked data quality of DBpedia, Freebase, OpenCyc, Wikidata, and YAGO. Semantic Web Journal, 77--129 (2018). \doi{10.3233/SW-170275}
 
 \bibitem{ref_lncs1}
 Author, F., Author, S.: Title of a proceedings paper. In: Editor,
