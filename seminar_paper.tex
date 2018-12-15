@@ -37,39 +37,41 @@
 \maketitle              % typeset the header of the contribution
 %
 \begin{abstract}
-The era of data is here and we need to deal with a big amount of data in different format representations. In order to get valuable insights from the underlying data it is necessary to extract the right portion of it to help us make sense of the data. However, this extracting process is not an easy task due to the different representations and the resulting complexity. One way of dealing with this kind of problems is using graphs for data representation.
+We are living in the big data era, meaning that we need to deal with a big amount of data available in different format representations. In order to get valuable insights it is not enough with just getting access to it, but extracting the right portion of data to help us make sense of the beneath information. However, the extracting process is not an easy task due to the resulting complexity of having different data representations, and the underlying semantics that may be lost in the process. One way of dealing with this kind of problems is using graph-based data representation which allows information integration from multiple sources.
+Although data representation is important, is not the only requisite for dealing with data. It is equally important to apply the right techniques to get valuable insights by exploring large-datasets. One of those techniques is clustering data in order to group similar entities.
 
-One way of representing information, and which is getting more common is graph-based because of its benefits (\todo{look for definition of graph and benefits, see if KG allows integration of information about entities from multiple sources, and if clustering of equivalent entities from diff sources is the key factor in the construction of KG }). But it is important to analyze and compare different clustering techniques and algorithms to get the most from this kind of representation. We will present the benefits of clustering on KG. We will present some common problems on graph clustering (like overlapping or inclusion of same entity in various clusters)
-It is possible to use unsupervised techniques to explore large-datasets (\todo{rephrase it})
+
+In that sense, it is essential to analyze and compare different clustering techniques and algorithms to get the most from this kind of representation. We will present the benefits of clustering on knowledge graphs. As well, we will present some common problems on graph clustering (e.g. overlapping).
+
 In this paper we present an overview of the most interesting techniques and algorithms design (approaches) with the purpose of improving clustering in graphs from a semantic perspective. We will revised in detail some of those algorithms to understand better, compare them and suggest the area of use specific to every case (presenting the pros and cons), and try to suggest the future of clustering.
 Clustering is a valid tool to be use in the exploration of data (big amount of data, vast)
-
-The abstract should briefly summarize the contents of the paper in
-15--250 words.
 
 \keywords{Knowledge Graphs \and Clustering \and Knowledge Bases \and Algorithms}
 \end{abstract}
 %
 %
 %
-\section{Introduction}
-Explain what and why is this paper here.
+\section{Introduction} \label{introduction}
+We are living in the big data era, meaning that we need to deal with a big amount of data available in different format representations. In order to get valuable insights it is not enough just getting access to it, but extracting the right portion of data to help us make sense of the beneath information \cite{Pedrycz}. However, the extracting process is not an easy task due to the resulting complexity of having different data representations, and the underlying semantics that may be lost in the process. One way of dealing with this kind of problems is using graph-based data representation which allows information integration from multiple sources.
+Although data representation is important, is not the only requisite for dealing with data. It is equally important to apply the right procedures to get valuable insights by exploring large datasets. One of those techniques is clustering data in order to group similar entities.  In this sense, it is essential to analyze and compare different clustering techniques and algorithms to implement in a particular scenario to get the most from knowledge-base representations.
 
-It is crucial to make sense of data but this task is challenged by the enormous amount of data in the era of information technology \cite{Pedrycz}.
+For this reason, our contribution in this paper is presenting an overview of the most interesting new techniques and algorithms for clustering knowledge graphs. Furthermore we also provide an analysis comparing and contrasting the different approaches.
 
-Various fields, such as intelligent data analysis (IDA), data mining, and system modeling attempt to assist the tasks involved in the understanding of data and discovery of tendencies on data \cite{Pedrycz}.
+First we introduce some concepts related to the topic. Then we briefly look at some traditional clustering approaches and the common problems on graph clustering (e.g. overlapping). After that we revise in more detail some of the new techniques and algorithms developed for graph clustering in the web.
 
-
-\section{Background}
-First of all, for a better understanding, it is important to define the main concepts related to the topic under study. In this section we present the core concepts associated with Knowledge Graphs and Clustering, as well as a short description of the relation between those concepts.
+Finally we critically discuss the different techniques by comparing them, as well as providing suggestion of application areas for the betterment of data grouping. 
 
 
-\subsection{Graphs}
-In the formal definition of Diestel \cite{Diestel}, ``a $graph$ is a pair $G = (V, E)$ of sets satisfying $E \subseteq [V]^2$; thus, the elements of $E$ are 2-element subsets of $V$. To avoid notational ambiguities, we shall always assume tacitly that $V \cap E = \emptyset$. The elements of $V$ are the $vertices$ (or $nodes$ or $points$) of the graph $G$, the elements of $E$ are its $edges$ (or $lines$)."
+\section{Background} \label{background}
+First of all, for a better understanding, in this section we define the main concepts related to the topic under study. After that, we provide a short description of the relation between those concepts.
+
+
+\subsection{Graphs} \label{graphs}
+In the formal definition of Diestel \cite{Diestel}, ``a $graph$ is a pair $G = (V, E)$ of sets satisfying $E \subseteq [V]^2$; thus, the elements of $E$ are 2-element subsets of $V$.". He also indicates that ``the elements of $V$ are the $vertices$ (or $nodes$ or $points$) of the graph $G$, the elements of $E$ are its $edges$ (or $lines$)."
 
 In another words, a graph is a set of vertices (nodes) and edges (links) connecting those vertices. The nodes on a graph represent different entities from the real world \cite{Robinson}, while the edges depict the relationship among them.
 
-\subsection{Knowledge Graphs}
+\subsection{Knowledge Graphs} \label{knowledge-graphs}
 Currently there is not a common definition of the term knowledge graphs (KG). Neither exist, as explained for Ehrlinger and W{\"o}{\ss} \cite{Ehrlinger}, an exact differentiation between the use of this term and the others related (i.e. knowledge bases, knowledge vault, and ontology). What is more, Google has its own implementation of what they call Knowledge Graph\footnote{Introducing the Knowledge Graph: things, not strings, accessed December 12, 2018,  \href{https://googleblog.blogspot.com/2012/05/introducing-knowledge-graph-things-not.html}{https://googleblog.blogspot.com/2012/05/introducing-knowledge-graph-things-not.html}}, which is an ``intelligent model" which understands some semantics and helps the search engine to create a short summary with the most relevant information related to a topic, but which does not cover all the aspects considered in a knowledge graph according to other interpretations of the term \cite{Ehrlinger}.
 
 In the definition of Paulheim \cite{Paulheim}, ``a knowledge graph
@@ -78,45 +80,58 @@ In the definition of Paulheim \cite{Paulheim}, ``a knowledge graph
 Another definition, propose by Ehrlinger and W{\"o}{\ss} \cite{Ehrlinger} after they study on the use of the term knowledge graphs, is: ``a knowledge graph acquires and integrates information into an ontology and applies a reasoner to derive new knowledge.". Moreover, they suggest that knowledge graphs involve the use of a graph-based structure to store data.
 
 
-\subsection{Knowledge-based systems}
-A knowledge-based system is also called an expert system, and is part of one of the areas of Artificial Intelligence (AI) \cite{Tripathi}. More specifically, Engelmore \cite{Engelmore} indicates that a knowledge base is part of the implementation dimension of an expert system, and that it is a database containing facts, rules, and relations. Additionally, Tripathi \cite{Tripathi} points out that expert systems aim to acquire expert knowledge coming from a human who is an specialist in the context of a particular domain, and subsequently making that information available to non-expert users.
+\subsection{Knowledge-based systems} \label{knowledge-based}
+A knowledge-based system is also called an expert system, and is part of one of the areas of Artificial Intelligence (AI) \cite{Tripathi}. More specifically, Engelmore \cite{Engelmore} indicates that a knowledge base belongs to the implementation dimension of an expert system, and that it is a database containing facts, rules, and relations. Additionally, Tripathi \cite{Tripathi} points out that expert systems aim to acquire expert knowledge coming from a human who is an specialist in the context of a particular domain, and subsequently making that information available to non-expert users.
 
 Having an expert system can lead to benefits in handling big amounts of data, and as Engelmore \cite{Engelmore} mentions, one of the key profits is the improvement on quality of tasks related to decision making.
 
 
-\subsection{Clustering}
+\subsection{Clustering} \label{clustering}
 Clustering has become a valid and well-establish tool to make sense of the big amount of data that we face nowadays, and helps to take decision based on data \cite{Pedrycz}.
 
 The use of clustering is well-suite for a variety of application areas, for instance: engineering, economics, finance, bio-medicine, biological sciences, etc. \cite{Pedrycz}.
 
 The optimization in clustering is predominantly data-oriented. \cite{Pedrycz}
-It is required to be careful in the selection of algorithms and concepts
+It is required to be careful in the selection of algorithms and concepts.
 
-\subsection{Interrelation of terms}
-As Engelmore \cite{Engelmore} indicates, the use of knowledge-based systems is profitable in helping decision making tasks. Likewise, implementing knowledge graphs can be beneficial, as shown by the use in industry. In this context, Pan et. al \cite{Pan}, introduce some success cases where the core idea is using knowledge graphs to collect not only data but knowledge which are then available. And whit this, to help knowledge-based search services in its information discovery and understanding.
+Clustering is a discipline devoted to revealing and describing cluster structures in data sets\cite{Mirkin}
+
+The system divides a set of instances into clusters or groups based on some measure of similarity. There are two main types of clustering algorithms. And there are 2 types of clustering algorithms: k-means clustering, and hierarchical clustering, where the first one is ... and for the second approach it is not necessary to specify the desired number of clusters but instead the clustering are built in each iteration grouping  the similar clusters (first those where individual clusters)\cite{Zacharski}
+
+clusters so that objects within a cluster have high similarity, but are very dissimilar to objects in other clusters. Dissimilarities and similarities are assessed based on the attribute values describing the objects and often involve distance measures. \cite{Han}
+
+Mirkin \cite{Mirkin} indicates that by using clustering techniques is possible to help solve problems in the area of data analysis (e.g. by associating, structuring, describing, and visualizing, data). Also according to Mirkin, clustering may be seen from many different perspective, like for example: machine learning, data mining, knowledge-discovery, statistics,etc. Those perspectives can also overlap as we will see in this paper, in the section \ref{algorithms}.
+
+Clustering is useful in that it can lead to the discovery of previously unknown groups within the data. Cluster analysis has been widely used in many applications such as business intelligence, image pattern recognition, Web search, biology, and security. In business intelligence, clustering can be used to organize a large number of customers into groups, where customers within a group share strong similar characteristics. This facilitates the development of business strategies for enhanced customer relationship management. Moreover, consider a consultant company with a large number of projects. \cite{Han}
+
+
+\subsection{Interrelation of terms} \label{interrelation}
+We previously mentioned Engelmore's remarks about the benefits of using knowledge-based systems to support decision making \cite{Engelmore}. Likewise, implementing knowledge graphs is rewarding, as shown by the use in industry. In this context, Pan et. al \cite{Pan}, introduce some success cases where the core idea is the use of knowledge graphs to collect not only data but knowledge which are then made available. And whit this, helping knowledge-based search services in its information discovery and understanding. 
 From the Linked Data perspective, this means that the content is connected with meaning and leads to a better understanding of a topic. \cite{Pan}
 
-\section{State of the Art}
+As we can see, the main concepts here are knowledge graphs and clustering, and how we can apply different cluster techniques to group more efficiently data and with this improve results.
+
+\section{State of the Art}\label{state-art}
 In this section we present novel and also more traditional techniques and algorithms used in the field of Knowledge Graph clustering. 
 
 \todo{look at different types of clustering: agglomerative https://www.linkedin.com/pulse/types-cluster-analysis-techniques-k-means-using-r-irrfan-khan/}
 
-\subsection{General Techniques for Knowledge Graph Clustering}
+\subsection{General Techniques for Knowledge Graph Clustering} \label{general-techniques}
 Presentation of well-known techniques for graph clustering.
 
 
-\subsection{Techniques and Algorithms}
+\subsection{Techniques and Algorithms}\label{algorithms}
 Revision in more detail the selected algorithms and techniques 
 
 
-\subsubsection{Graph clustering for content aggregation for an Ontology-Based P2PKM}
+\subsubsection{Graph clustering for content aggregation for an Ontology-Based P2PKM}\label{content-aggregation}
 Present the work of \cite{Schmitz} where they introduce the approach of semantic self-descriptions to be publish among peers and for which they use a clustering algorithm to obtain that self-description.
 
 
-\subsubsection{Structural similarity clustering entities}
+\subsubsection{Structural similarity clustering entities} \label{structural-similarity}
 
 
-\subsubsection{Entity Clustering using link features}
+\subsubsection{Entity Clustering using link features} \label{entity-clustering}
 
 
 \begin{center}
@@ -186,6 +201,17 @@ Robinson, I., Webber, J.,Eifrem, E.: Graph Databases. 2nd edn. O'Reilly Media, I
 
 \bibitem{Pan}
 Pan, J., Vetere, G., Gomez-Perez, J., Wu,: Exploiting Linked Data and Knowledge Graphs in Large Organisations. 1st edn. Springer International, Switzerland, (2017)
+
+\bibitem{Zacharski}
+Zacharski, R.: A Programmer's Guide to Data Mining. http://guidetodatamining.com/, (2012)
+
+\bibitem{Han}
+Han, J., Kamber, M., Pei, J.: Data Mining: Concepts and Techniques. 3rd edn. Morgan Kaufmann Publishers Inc.,
+San Francisco, CA, USA (2011)
+
+\bibitem{Mirkin}
+Mirkin, B.: Clustering For Data Mining: A Data Recovery Approach. 2nd edn. Chapman \& Hall/CRC,
+Boca Raton, FL, USA (2005)
 
 \end{thebibliography}
 
