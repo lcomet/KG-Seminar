@@ -70,7 +70,7 @@ In the formal definition of Diestel \cite{Diestel}, ``a $graph$ is a pair $G = (
 In another words, a graph is a set of vertices (nodes) and edges (links) connecting those vertices. The nodes on a graph represent different entities from the real world \cite{Robinson}, while the edges depict the relationship among them.
 
 \subsection{Knowledge Graphs}
-Currently there is not a common definition the term knowledge graphs (KG). Neither exist, as explained for Ehrlinger and W{\"o}{\ss} \cite{Ehrlinger}, an exact differentiation between the use of this term and the others related (i.e. knowledge bases, knowledge vault, and ontology). What is more, Google has its own implementation of what they call Knowledge Graph\footnote{Introducing the Knowledge Graph: things, not strings, accessed December 12, 2018,  \href{https://googleblog.blogspot.com/2012/05/introducing-knowledge-graph-things-not.html}{https://googleblog.blogspot.com/2012/05/introducing-knowledge-graph-things-not.html}}, which is an ``intelligent model" which understands some semantics and helps the search engine to create a short summary with the most relevant information related to a topic, but which does not cover all the aspects considered in a knowledge graph according to other interpretations of the term \cite{Ehrlinger}.
+Currently there is not a common definition of the term knowledge graphs (KG). Neither exist, as explained for Ehrlinger and W{\"o}{\ss} \cite{Ehrlinger}, an exact differentiation between the use of this term and the others related (i.e. knowledge bases, knowledge vault, and ontology). What is more, Google has its own implementation of what they call Knowledge Graph\footnote{Introducing the Knowledge Graph: things, not strings, accessed December 12, 2018,  \href{https://googleblog.blogspot.com/2012/05/introducing-knowledge-graph-things-not.html}{https://googleblog.blogspot.com/2012/05/introducing-knowledge-graph-things-not.html}}, which is an ``intelligent model" which understands some semantics and helps the search engine to create a short summary with the most relevant information related to a topic, but which does not cover all the aspects considered in a knowledge graph according to other interpretations of the term \cite{Ehrlinger}.
 
 In the definition of Paulheim \cite{Paulheim}, ``a knowledge graph
 1. mainly describes real world entities and their interrelations, organized in a graph, 2. defines possible classes and relations of entities in a schema, 3. allows for potentially interrelating arbitrary entities with each other, and 4. covers various topical domains". A more formal definition, which is also focuses more on the context of the Semantic Web, is proposed by F{\"a}rber \cite{Farber}: ``we define a Knowledge Graph as an RDF Graph. An RDF graph consists of a finite set of RDF triples where each RDF triple $(s, p, o)$ is an ordered set of the following RDF terms: a subject $s \in U ∪ B$, a predicate $p \in U$, and an object $o \in U ∪ B ∪ L$. An RDF term is either a URI $u \in U$, a blank node $b \in B$,or a literal $l \in L$. $U, B,$ and $L$ are infinite sets and pairwise disjoint".
@@ -79,26 +79,27 @@ Another definition, propose by Ehrlinger and W{\"o}{\ss} \cite{Ehrlinger} after 
 
 
 \subsection{Knowledge-based systems}
-A knowledge-based system is also called an expert system, and is part of one of the areas of Artificial Intelligence (AI) \cite{Tripathi}. More specifically, \cite{Engelmore} indicate that a knowledge base is part of the implementation dimension of an expert system, and that it is a database containing facts, rules, and relations. Additionally, \cite{Tripathi} point out that expert systems aim to acquire expert knowledge coming from a human who is expert in the context of a particular domain, and subsequently making that information available to non-expert users.
+A knowledge-based system is also called an expert system, and is part of one of the areas of Artificial Intelligence (AI) \cite{Tripathi}. More specifically, Engelmore \cite{Engelmore} indicates that a knowledge base is part of the implementation dimension of an expert system, and that it is a database containing facts, rules, and relations. Additionally, Tripathi \cite{Tripathi} points out that expert systems aim to acquire expert knowledge coming from a human who is an specialist in the context of a particular domain, and subsequently making that information available to non-expert users.
 
-Having an expert system can lead to benefits in handling big amounts of data, and as \cite{Engelmore} mention, one of the key profits is the improvement on quality of tasks related to decision making.
+Having an expert system can lead to benefits in handling big amounts of data, and as Engelmore \cite{Engelmore} mentions, one of the key profits is the improvement on quality of tasks related to decision making.
 
 
 \subsection{Clustering}
-Clustering has become a valid and well-establish tool to make sense of the big amount of data that we face nowadays, and helps to take decision based on data. Clustering helps in the exploration of huge amount of data. \cite{Pedrycz}
+Clustering has become a valid and well-establish tool to make sense of the big amount of data that we face nowadays, and helps to take decision based on data \cite{Pedrycz}.
 
-The use of clustering is well-suite for a variety of areas of application, for instance: engineering, economics, finance, biomedicine, biological sciences, etc. \cite{Pedrycz}
+The use of clustering is well-suite for a variety of application areas, for instance: engineering, economics, finance, bio-medicine, biological sciences, etc. \cite{Pedrycz}.
 
 The optimization in clustering is predominantly data-oriented. \cite{Pedrycz}
-It is required to be careful in the selection of algorithms and concepts 
-
+It is required to be careful in the selection of algorithms and concepts
 
 \subsection{Interrelation of terms}
-
+As Engelmore \cite{Engelmore} indicates, the use of knowledge-based systems is profitable in helping decision making tasks. Likewise, implementing knowledge graphs can be beneficial, as shown by the use in industry. In this context, Pan et. al \cite{Pan}, introduce some success cases where the core idea is using knowledge graphs to collect not only data but knowledge which are then available. And whit this, to help knowledge-based search services in its information discovery and understanding.
+From the Linked Data perspective, this means that the content is connected with meaning and leads to a better understanding of a topic. \cite{Pan}
 
 \section{State of the Art}
 In this section we present novel and also more traditional techniques and algorithms used in the field of Knowledge Graph clustering. 
 
+\todo{look at different types of clustering: agglomerative https://www.linkedin.com/pulse/types-cluster-analysis-techniques-k-means-using-r-irrfan-khan/}
 
 \subsection{General Techniques for Knowledge Graph Clustering}
 Presentation of well-known techniques for graph clustering.
@@ -182,6 +183,9 @@ Diestel, R.: Graph Theory. 4th edn. Springer, New York, NY, USA, (2012)
 
 \bibitem{Robinson}
 Robinson, I., Webber, J.,Eifrem, E.: Graph Databases. 2nd edn. O'Reilly Media, Inc., Sebastopol, CA (2015)
+
+\bibitem{Pan}
+Pan, J., Vetere, G., Gomez-Perez, J., Wu,: Exploiting Linked Data and Knowledge Graphs in Large Organisations. 1st edn. Springer International, Switzerland, (2017)
 
 \end{thebibliography}
 
