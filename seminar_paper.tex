@@ -55,17 +55,16 @@ The structure of this paper is as follows: first, in section \ref{background} we
 Finally, in sections \ref{analysis} and \ref{discussion} we critically discuss the different techniques by comparing them, as well as providing suggestion of application areas for the betterment of data grouping. 
 
 
-\section{Background / Terminology and definitions} \label{background}
+\section{Background} \label{background}
 First of all, for a better understanding, in this section we define the main concepts related to the topic under study. After that, we provide a short description of the relation between those concepts.
 
+\subsection{Terminology and definitions} \label{terminology}
 
-\subsection{Graphs} \label{graphs}
-In the formal definition of Diestel \cite{Diestel}, ``a $graph$ is a pair $G = (V, E)$ of sets satisfying $E \subseteq [V]^2$; thus, the elements of $E$ are 2-element subsets of $V$". He also indicates that ``the elements of $V$ are the $vertices$ (or $nodes$ or $points$) of the graph $G$, the elements of $E$ are its $edges$ (or $lines$)".
+\subsubsection{Graphs} \label{graphs}
+In the formal definition of Diestel \cite{Diestel}, ``a $graph$ is a pair $G = (V, E)$ of sets satisfying $E \subseteq [V]^2$; thus, the elements of $E$ are 2-element subsets of $V$". He also indicates that ``the elements of $V$ are the $vertices$ (or $nodes$ or $points$) of the graph $G$, the elements of $E$ are its $edges$ (or $lines$)". In other words, a graph is a set of vertices (nodes) and edges (links) connecting those vertices. The nodes on a graph represent different entities from the real world \cite{Robinson}, while the edges depict the relationship among them.
 
-In other words, a graph is a set of vertices (nodes) and edges (links) connecting those vertices. The nodes on a graph represent different entities from the real world \cite{Robinson}, while the edges depict the relationship among them.
-
-\subsection{Knowledge Graphs} \label{knowledge-graphs}
-Currently there is not a common definition of the term knowledge graphs (KG). Neither exist, as explained for Ehrlinger and W{\"o}{\ss} \cite{Ehrlinger}, an exact differentiation between the use of this term and the others related (i.e. knowledge bases, knowledge vault, and ontology). What is more, Google has its own implementation of what they call Knowledge Graph\footnote{Introducing the Knowledge Graph: things, not strings, accessed December 12, 2018,  \href{https://googleblog.blogspot.com/2012/05/introducing-knowledge-graph-things-not.html}{https://googleblog.blogspot.com/2012/05/introducing-knowledge-graph-things-not.html}}, which is an ``intelligent model" that understands some semantics and helps the search engine to create a short summary related to a topic, but which does not cover all the aspects considered in a KG according to other interpretations of the term \cite{Ehrlinger}.
+\subsubsection{Knowledge Graphs} \label{knowledge-graphs}
+Currently there is not a common definition of the term knowledge graphs (KG). Neither exist, as explained for Ehrlinger and W{\"o}{\ss} \cite{Ehrlinger}, an exact differentiation between the use of this term and the others related (i.e. knowledge bases, knowledge vault, and ontology). What is more, Google has its own implementation of what they call Knowledge Graph\footnote{Introducing the Knowledge Graph: things, not strings, accessed December 12, 2018,  \href{https://googleblog.blogspot.com/2012/05/introducing-knowledge-graph-things-not.html}{https://googleblog.blogspot.com/2012/05/introducing-knowledge-graph-things-not.html}}, a model which considers some semantics and helps the search engine to create a short summary related to a topic, but which does not cover all the aspects considered in a KG according to other interpretations of the term \cite{Ehrlinger}.
 
 In the definition of Paulheim \cite{Paulheim}, ``a knowledge graph
 1. mainly describes real world entities and their interrelations, organized in a graph, 2. defines possible classes and relations of entities in a schema, 3. allows for potentially interrelating arbitrary entities with each other, and 4. covers various topical domains". A more formal definition, which also focuses more on the context of the Semantic Web, is proposed by F{\"a}rber \cite{Farber}: ``we define a Knowledge Graph as an RDF Graph. An RDF graph consists of a finite set of RDF triples where each RDF triple $(s, p, o)$ is an ordered set of the following RDF terms: a subject $s \in U ∪ B$, a predicate $p \in U$, and an object $o \in U ∪ B ∪ L$. An RDF term is either a URI $u \in U$, a blank node $b \in B$, or a literal $l \in L$. $U, B,$ and $L$ are infinite sets and pairwise disjoint".
@@ -73,24 +72,19 @@ In the definition of Paulheim \cite{Paulheim}, ``a knowledge graph
 Additionally, Ehrlinger and W{\"o}{\ss} \cite{Ehrlinger} propose the following definition: ``a knowledge graph acquires and integrates information into an ontology and applies a reasoner to derive new knowledge.". Moreover, they suggest that knowledge graphs involve the use of a graph-based structure to store data. However, KG focus on the instances rather than on the schema of the represented knowledge \cite{Paulheim}
 
 
-\subsection{Knowledge-based systems} \label{knowledge-based}
+\subsubsection{Knowledge-based systems} \label{knowledge-based}
 A knowledge-based system is also called an expert system, and is part of one of the areas of Artificial Intelligence (AI) \cite{Tripathi}. More specifically, Engelmore \cite{Engelmore} suggests that a knowledge base is a database containing facts, rules, and relations. Additionally, Tripathi \cite{Tripathi} points out that expert systems aim to acquire expert knowledge coming from a human who is an specialist in a particular domain, and subsequently making that information available to non-expert users.
 Therefore, using an expert system can lead to benefits in handling knowledge, and as Engelmore \cite{Engelmore} mentions, one of its key profits is the quality improvement of tasks related to decision making.
 
 
-\subsection{Clustering} \label{clustering}
-Clustering is a field of study which helps to discover and expose known or unknown clusters in datasets \cite{Han} \cite{Mirkin}.
-
-Clustering aims to divide an object (dataset) into various groups (clusters) relying on the entities' attributes. After the division, the entities in one group are highly similar, while are quite different to the entities in other groups \cite{Han}.
-
-Clustering is useful for coping with big amount of data by helping data analysis \cite{Pedrycz} \cite{Mirkin}. Therefore, it is used in many application areas, such as engineering, economics, biology, business intelligence, web search, pattern recognition, etc. \cite{Pedrycz} \cite{Han}; and can be seen from many different perspectives (e.g. machine learning, data mining, knowledge-discovery, statistics,etc.). In this respect, those perspectives can also overlap as we will see in this paper, in the section \ref{algorithms}.
+\subsubsection{Clustering} \label{clustering}
+Clustering is a field of study which helps to discover and expose known or unknown clusters in datasets \cite{Han} \cite{Mirkin}. Clustering aims to divide an object (dataset) into various groups (clusters) relying on the entities' attributes. After the division, the entities in one group are highly similar, while are quite different to the entities in other groups \cite{Han}. In this sense, clustering is useful for coping with big amount of data by helping data analysis \cite{Pedrycz} \cite{Mirkin}. Therefore, it is used in many application areas, such as engineering, economics, biology, business intelligence, web search, pattern recognition, etc. \cite{Pedrycz} \cite{Han}; and can be seen from many different perspectives (e.g. machine learning, data mining, knowledge-discovery, statistics,etc.). In this respect, those perspectives can also overlap as we will see in this paper, in the section \ref{algorithms}.
 
 
 \subsection{Interrelation of terms} \label{interrelation}
-We previously mentioned Engelmore's remarks on the benefits of using knowledge-based systems. Likewise, implementing knowledge graphs is rewarding, as shown by the use in industry. In this context, Pan et al. \cite{Pan} introduce some success cases involving KG to first collect and then provide not only data but knowledge. As a result, KG help knowledge-based search services to discover and understand information.
-Moreover, from the Linked Data perspective, this involve linking content with meaning for a better topic understanding \cite{Pan}.
+We previously mentioned Engelmore's remarks on the benefits of using knowledge-based systems. Likewise, implementing knowledge graphs is rewarding, as shown by the use in industry. In this context, Pan et al. \cite{Pan} introduce some success cases involving KG to first collect and then provide not only data but knowledge. As a result, KG help knowledge-based search services to discover and understand information. Moreover, as Tang et al. \cite{Tang} present, clustering can be use to group knowledge based on content similarity. Hence, to find related topics for a specific application (e.g. common topics between two people interchanging emails).
 
-As Tang et al. \cite{Tang} present, clustering can be use to group knowledge based on content similarity. Hence, to find related topics for a specific application (e.g. common topics between two people interchanging emails).
+Additionally, from the Linked Data perspective, this involve linking content with meaning for a better topic understanding \cite{Pan}.
 
 In summary, clustering techniques support knowledge graphs by associating related content, and with this improving data exploration and knowledge discovery.
 
@@ -122,7 +116,7 @@ acquisition of search results, whereas the efficiency of the cluster constructio
 —Overlapping clusters. As the same result may often be assigned to multiple themes, it is preferable to cater for overlapping clusters. Also, a graph may be more flexible than a tree because the latter does not easily permit recovery from bad decisions while traversing the cluster structure. Using a graph, the results contained in one cluster can be reached through several paths, each fitting a particular user’s need or paradigm.
 —Graphical user interface (GUI). A clustering engine allows interactive browsing through clustered Web search results for a large population of users. It can thus take advantage of Web-based graphical interfaces to convey more visual information about the clusters and their relationships, provided that they are intuitive to use and computationally efficient.
 
-\cite{Carpiteno} distinguish three categories of algorithms: data-centric, description-aware, and description-centric.
+\cite{Carpineto} distinguish three categories of algorithms: data-centric, description-aware, and description-centric.
 Data-Centric Algorithms. A typical representative of this group consists of a con- ventional data clustering algorithm (hierarchical, optimization, spectral, or other), ap- plied to the problem of clustering search results, often slightly modified to produce some kind of textual representation of the discovered clusters for end-users.Data-centric algorithms borrow their strengths from well-known and proven tech- niques targeted at clustering numeric data, but at some point they inevitably hit the problem of labeling the output with something sensible to a human. This problem is actually so difficult that the description of a cluster is typically recovered from its fea- ture vector (or centroid) in the simplest possible way, and consists of a few unordered salient terms. 
 
 Description-Aware Algorithms. The main difficulty in data-centric algorithms is creating a comprehensible description from a model of text representation that is not prepared for this purpose. Description-aware algorithms are aware of this labeling problem and try to ensure that the construction of cluster descriptions is that feasible and it yields results interpretable to a human.
@@ -134,7 +128,7 @@ Description-Centric Algorithms. Members of this group include algorithms that ar
 
 Conclusion by \cite{Carpineto} By showing the most likely meanings for any given request, search results clustering narrows the semantic mismatching between the user need behind the request and the list of results returned by a plain search engine. The technology of Web clustering engines has reached a level of maturity in which a rich body of research has been developed and several commercial systems are being deployed.
 In this article, we have presented the most important scientific and technical aspects of Web search result clustering. We have discussed the issues that must be addressed to build a Web clustering engine and have reviewed and evaluated a number of existing algorithms and systems.
-A number of advances must be made before search results clustering entirely fulfills the promise of being the PageRank of the future. First, more work needs to be done to improve the quality of the cluster labels and the coherence of the cluster structure. Second, more studies on user queries must be made to understand when search results clustering is most useful. Third, there is a need for carefully engineered evaluation benchmarks to allow cross-system comparison, and to measure progress. Fourth, ad- vanced visualization techniques might be used to provide better overviews and guide the interaction with clustered results.
+A number of advances must be made before search results clustering entirely fulfills the promise of being the PageRank of the future. First, more work needs to be done to improve the quality of the cluster labels and the coherence of the cluster structure. Second, more studies on user queries must be made to understand when search results clustering is most useful. Third, there is a need for carefully engineered evaluation benchmarks to allow cross-system comparison, and to measure progress. Fourth, advanced visualization techniques might be used to provide better overviews and guide the interaction with clustered results.
 
 \todo{look at those surveys}
 
@@ -157,12 +151,12 @@ Present the work of \cite{Schmitz} where they introduce the approach of semantic
 
 \subsubsection{AppGrouper: Knowledge-graph-based Interactive Clustering Tool for Mobile App Search Results} \cite{Chang}
 
-\subsection{Incorporating Knowledge }
+\subsubsection{Incorporating Knowledge }
 
 \todo{Read and include information from \cite{Wang}}
 
-\subsection{Topical Clustering of Search Results}
-\cite{Scaiella}
+\subsubsection{Topical Clustering of Search Results}
+\cite{Scaiella} contrast/complement with \cite{Schuhmacher}
 
 
 \begin{center}
@@ -284,6 +278,8 @@ Wang, C., Song, Y., El-Kishky, A., Roth, D. and Zhang, M., Han, J.: Incorporatin
 \bibitem{Scaiella}
 Scaiella, U., Ferragina, P., Marino, A., Ciaramita, M.: Topical Clustering of Search Results. In: Proceedings of the Fifth ACM International Conference on Web Search and Data Mining, pp. 223--232. ACM, Seattle, Washington, USA (2012) \doi{10.1145/2124295.2124324}
 
+\bibitem{Schuhmacher}
+Schuhmacher, M., Ponzetto, S.: Exploiting DBpedia for Web Search Results Clustering. In: Proceedings of the 2013 Workshop on Automated Knowledge Base Construction, pp. 91--96. ACM, San Francisco, California, USA (2013) \doi{10.1145/2509558.2509574}
 
 \end{thebibliography}
 
