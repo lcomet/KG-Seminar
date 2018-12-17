@@ -55,7 +55,7 @@ The structure of this paper is as follows: first, in section \ref{background} we
 Finally, in sections \ref{analysis} and \ref{discussion} we critically discuss the different techniques by comparing them, as well as providing suggestion of application areas for the betterment of data grouping. 
 
 
-\section{Background} \label{background}
+\section{Background / Terminology and definitions} \label{background}
 First of all, for a better understanding, in this section we define the main concepts related to the topic under study. After that, we provide a short description of the relation between those concepts.
 
 
@@ -87,7 +87,7 @@ Clustering is useful for coping with big amount of data by helping data analysis
 
 
 \subsection{Interrelation of terms} \label{interrelation}
-We previously mentioned Engelmore's remarks about the benefits of using knowledge-based systems. Likewise, implementing knowledge graphs is rewarding, as shown by the use in industry. In this context, Pan et al. \cite{Pan} introduce some success cases involving KG to first collect and then provide not only data but knowledge. As a result, KG help knowledge-based search services to discover and understand information.
+We previously mentioned Engelmore's remarks on the benefits of using knowledge-based systems. Likewise, implementing knowledge graphs is rewarding, as shown by the use in industry. In this context, Pan et al. \cite{Pan} introduce some success cases involving KG to first collect and then provide not only data but knowledge. As a result, KG help knowledge-based search services to discover and understand information.
 Moreover, from the Linked Data perspective, this involve linking content with meaning for a better topic understanding \cite{Pan}.
 
 As Tang et al. \cite{Tang} present, clustering can be use to group knowledge based on content similarity. Hence, to find related topics for a specific application (e.g. common topics between two people interchanging emails).
@@ -96,15 +96,38 @@ In summary, clustering techniques support knowledge graphs by associating relate
 
 
 \section{State of the Art}\label{state-art}
-In this section we present novel and also more traditional techniques and algorithms used in the field of Knowledge Graph clustering. 
-
-The system divides a set of instances into clusters or groups based on some measure of similarity. There are two main types of clustering algorithms. And there are 2 types of clustering algorithms: k-means clustering, and hierarchical clustering, where the first one is ... and for the second approach it is not necessary to specify the desired number of clusters but instead the clustering are built in each iteration grouping  the similar clusters (first those where individual clusters)\cite{Zacharski}
-
-\todo{look at different types of clustering: agglomerative https://www.linkedin.com/pulse/types-cluster-analysis-techniques-k-means-using-r-irrfan-khan/}
+In this section, first we present a brief summary of the most well-known traditional techniques and algorithms used in the field of graphs clustering. After that, we introduce some novel approaches focusing on KG. 
 
 \subsection{General Techniques for Knowledge Graph Clustering} \label{general-techniques}
-Presentation of well-known techniques for graph clustering.
+From here on, we present some of the most notorious techniques for clustering in the context of data mining and knowledge-based systems.
 
+In general terms, traditional clustering techniques are used in a variety of scenarios and application areas, as for example data analysis and interpretation \cite{Pedrycz}. Those algorithms focused on clustering, pattern mining, and classification can be extended to graphs representations \cite{Aggarwal}.
+
+In this context, there are different types of clustering algorithms, which are classified in a variety of taxonomies (e.g. k-means and hierarchical clustering \cite{Zacharski}, hierarchical and function-based clustering \cite{Pedrycz}, hierarchical methods, partitioning relocation methods, density-based partitioning methods, methods based on co-occurrence of categorical data, scalable clustering algorithms, algorithms for high dimensional data, etc. \cite{Berkhin}), but regardless the classification what those algorithms consider are the similarity and/or distance among entities \cite{Pedrycz}.
+There are many studies covering surveys on the different techniques used for graph clustering, for instance: \cite{Schaeffer}, \cite{Aggarwal}, \cite{Carpineto} Carpineto focused on the systems that perform search results clustering, in which such new algorithms are usually en- compassed.
+
+Aggarwal et al.  \cite{Aggarwal} find that typical problems on graph clustering are related to node clustering, and graph clustering. The first one consists on partitioning the graphs into clusters of densely connected nodes, which can introduce problems called pseudo-cliques (when any pair of nodes have high probability an edge exists). Another problem by applying this approach is called shingles (sub-graphs having a large number of common links). The second group (graph clustering algorithms), large number of graphs need to be clustered based on their underlying structural behaviour. The problem here is that it needs to match the structures of the underlying graphs for clustering.
+
+Aggarwal et. al \cite{Aggarwal} also indicates that many conventional algrorithms, such as k-means type partitional algorithms and hierarchical algorithms can be extended to graphs clustering. The changes to do are: adapting the measures to define similarity/distances between structural objects, improving it. Also he mentions that the use of centroids in k-means is good for multi-dimensional objects but needs to be adapted for graphs to create representative objects. 
+
+Aggarwal et. al \cite{Aggarwal} presented two approaches structural distance-based approach for computing structural distances between documents and then use this value for computing clustering. They also mentioned that the agglomerative hierarchical clustering methods was adopted and that similarity is computed according to semantics, structures and context information for elements The first summary-based approach for clustering XML doc- uments was presented in [10]. In [10], the XML documents are modeled as rooted ordered labeled trees  A framework for clustering XML docu- ments by using structural summaries of trees is presented. The aim is to improve algorithmic efficiency without compromising cluster quality.  In another approach the distance between two elements is defined according to the number of common element-subelement relationship, this approach is partition-based algorithm and its primary idea is to use frequent-pattern mining algorithms to determine the summaries of frequent structures in the data, using k-means approach in which each cluster center comprises a set of frequent patterns which are local to the partition for that cluster. This approach is superior to a similarity function according to the authors.
+
+In the context of the Web, \cite{Carpineto} indicates that applying clustering post information retrieval is more efficient, and probably more effective than applying it before.
+
+Difference indicates by \cite{Carpineto} on traditional document clustering vs search result clustering:
+The dynamic nature of the data together with the interactive use of clustered results pose new requirements and challenges to clustering technology, as detailed in the following list.
+acquisition of search results, whereas the efficiency of the cluster construction algo- rithm is less important due to the low number of input results.
+—Short input data description. Due to computational reasons, the data available to the clustering algorithm for each search result are usually limited to a URL, an optional title, and a short excerpt of the document’s text (the snippet). This contrasts with using more coherent, multidimensional data descriptions such as whole Web pages.
+—Unknown number of clusters. Many traditional methods require this number as an input. In search results clustering, however, both the number and the size of clusters cannot be predetermined because they vary with the query; furthermore, they may have to be inferred from a variable number of search results.
+—Overlapping clusters. As the same result may often be assigned to multiple themes, it is preferable to cater for overlapping clusters. Also, a graph may be more flexible than a tree because the latter does not easily permit recovery from bad decisions while traversing the cluster structure. Using a graph, the results contained in one cluster can be reached through several paths, each fitting a particular user’s need or paradigm.
+—Graphical user interface (GUI). A clustering engine allows interactive browsing through clustered Web search results for a large population of users. It can thus take advantage of Web-based graphical interfaces to convey more visual information about the clusters and their relationships, provided that they are intuitive to use and computationally efficient.
+
+
+\todo{look at those surveys}
+
+Despite past efforts [6, 12, 17], purely algorithmic SRC techniques do not generally create production-quality document clusters due to the complexity of the unsu- pervised clustering problem. Search results change all the time due to new documents, changes in user inter- ests, and discovery of new ranking signals. Therefore, the dynamic nature of search results requires an efficient on-the-fly clustering process. Furthermore, many prop- erties of the clusters affect the final user experience, for example, whether there are descriptive labels for clus- ters; whether documents in clusters are semantically co- herent; whether clusters cover all relevant topics under a search query. \cite{Chang}
+
+\todo{mention problems with traditional approaches}
 
 \subsection{Techniques and Algorithms}\label{algorithms}
 Revision in more detail the selected algorithms and techniques 
@@ -119,6 +142,10 @@ Present the work of \cite{Schmitz} where they introduce the approach of semantic
 
 \subsubsection{Entity Clustering using link features} \label{entity-clustering}
 
+\subsection{Incorporating Knowledge }
+
+\todo{Read and include information from \cite{Wang}}
+
 
 \begin{center}
 \includegraphics[width=1\textwidth]{clip_example.png}
@@ -129,6 +156,14 @@ Present the work of \cite{Schmitz} where they introduce the approach of semantic
 \includegraphics[width=1\textwidth]{clip_overlap_resolution.png}
 \captionof{figure}{Overlapping resolution on CLIP \cite{Saeedi}}
 \end{center}
+
+\subsection{Challenges on clustering KG}
+According to \cite{Aggarwal} The major challenges that remain in the area of graph clustering are as follows:
+Clustering Massive Data Sets: In some cases, the data sets containing the graphs may be so large that they may be held only on disk. For ex- ample, if we have a dense graph containing 107 nodes, then the number of edges may be as high as 1013. In such cases, it may not even be possible to store the graph effectively on disk. In cases in which the graph can be stored on disk, it is critical that the algorithm should be designed in order to take the disk-resident behavior of the underlying data into account. This is especially challenging in the case of graph data sets, because the structural behavior of the graph interferes with our ability to process the edges sequentially for many applications. In cases in which the graph is too large to store on disk, it is essential to design summary structures which can effectively store the underlying structural behavior of the graph. This stored summary can then be used effectively for graph clustering algorithms.
+Clustering Graph Streams: In this case, we have large graphs which are received as edge streams. Such graphs are more challenging, since a given edge cannot be processed more than once during the computation process. In such cases, summary structures need to be designed in order to facilitate an effective clustering process. These summary structures may be utilized in order to determine effective clusters in the underlying data. This approach is similar to the case discussed above in which the size of the graph is too large to store on disk.
+In addition, techniques need to be designed for interfacing clustering algorithms with traditional database management techniques. In order to achieve this goal, effective representations and query languages need to be designed for graph data. This is a new and emerging area of research, and can be leveraged upon in order to further improve the effectiveness of graph algorithms.
+
+
 
 
 \section{Analysis and comparison of presented approaches} \label{analysis}
@@ -189,7 +224,7 @@ Robinson, I., Webber, J.,Eifrem, E.: Graph Databases. 2nd edn. O'Reilly Media, I
 Pan, J., Vetere, G., Gomez-Perez, J., Wu,: Exploiting Linked Data and Knowledge Graphs in Large Organisations. 1st edn. Springer International, Switzerland, (2017)
 
 \bibitem{Zacharski}
-Zacharski, R.: A Programmer's Guide to Data Mining. http://guidetodatamining.com/, (2012)
+Zacharski, R.: A Programmer's Guide to Data Mining. http://guidetodatamining.com/ (2012)
 
 \bibitem{Han}
 Han, J., Kamber, M., Pei, J.: Data Mining: Concepts and Techniques. 3rd edn. Morgan Kaufmann Publishers Inc.,
@@ -201,6 +236,27 @@ Boca Raton, FL, USA (2005)
 
 \bibitem{Tang}
 Tang, G., Pei, J., Luk, W.: Email Mining: Tasks, Common Techniques, and Tools. Knowl. Inf. Syst., 1--31 (2014). \doi{10.1007/s10115-013-0658-2}
+
+\bibitem{Berkhin}
+Berkhin, P.: A Survey of Clustering Data Mining Techniques. In: Kogan, J., Nicholas, C., Teboulle, M. (eds.) Grouping Multidimensional Data: Recent Advances in Clustering 2006, pp. 25--71.
+Springer Berlin Heidelberg, Berlin, Heidelberg (2006). \doi{10.1007/3-540-28349-8\_2}
+
+\bibitem{Schaeffer}
+Schaeffer, S.: Survey: Graph Clustering. Comput. Sci. Rev., 27--64 (2007). \doi{10.1016/j.cosrev.2007.05.001}
+
+\bibitem{Aggarwal}
+Aggarwal, C., Wang, H.: A Survey of Clustering Algorithms for Graph Data. In: Aggarwal, C., Wang, H. (eds.) Managing and Mining Graph Data, pp. 275--301.
+Springer US, Boston, MA, USA (2010). \doi{10.1007/978-1-4419-6045-0\_9}
+
+\bibitem{Chang}
+Chang, S., Dai, P., Hong, L., Sheng, C., Zhang, T., Chi, E.: AppGrouper: Knowledge-based Interactive Clustering Tool for App Search Results. In: Proceedings of the 21st International Conference on Intelligent User Interfaces, pp. 348--358. ACM, New York, NY, USA (2016) \doi{10.1145/2856767.2856783}
+
+\bibitem{Carpineto}
+Carpineto, C., Osi\'{n}ski, S, Romano, G., Weiss, D. : A Survey of Web Clustering Engines. ACM Comput. Surv., 17:1--17:38 (2009)
+
+\bibitem{Wang}
+Wang, C., Song, Y., El-Kishky, A., Roth, D. and Zhang, M., Han, J.: Incorporating World Knowledge to Document Clustering via Heterogeneous Information Networks. In: Proceedings of the 21th ACM SIGKDD International Conference on Knowledge Discovery and Data Mining, pp. 1215--1224. ACM, New York, NY, USA (2015)
+
 
 \end{thebibliography}
 
