@@ -132,8 +132,13 @@ A number of advances must be made before search results clustering entirely fulf
 
 \todo{look at those surveys}
 
-Despite past efforts [6, 12, 17], purely algorithmic SRC techniques do not generally create production-quality document clusters due to the complexity of the unsu- pervised clustering problem. Search results change all the time due to new documents, changes in user inter- ests, and discovery of new ranking signals. Therefore, the dynamic nature of search results requires an efficient on-the-fly clustering process. Furthermore, many prop- erties of the clusters affect the final user experience, for example, whether there are descriptive labels for clus- ters; whether documents in clusters are semantically co- herent; whether clusters cover all relevant topics under a search query. \cite{Chang}
+Despite past efforts [6, 12, 17], purely algorithmic SRC techniques do not generally create production-quality document clusters due to the complexity of the unsupervised clustering problem. Search results change all the time due to new documents, changes in user interests, and discovery of new ranking signals. Therefore, the dynamic nature of search results requires an efficient on-the-fly clustering process. Furthermore, many properties of the clusters affect the final user experience, for example, whether there are descriptive labels for clusters; whether documents in clusters are semantically coherent; whether clusters cover all relevant topics under a search query. \cite{Chang}
 
+In the context of Linked Data, \cite{Elbattah} indicates: The graph-based representation turns plain strings into “entities” that possess attributes, taxonomy and relationships to other entities. 
+
+clustering presents as an appropriate method for dealing with immense amounts of data in an unsupervised manner. \cite{Elbattah}
+Different tasks and purposes can be served by clustering including: i) Exploring underlying structure of data, ii) Discovering meaningful patterns, and iii) Summarising key characteristics of data. \cite{Elbattah}
+a knowledge graph represents knowledge in patterns of interconnected nodes and arcs. \cite{Elbattah}
 \todo{mention problems with traditional approaches}
 
 \subsection{Techniques and Algorithms}\label{algorithms}
@@ -144,8 +149,17 @@ Revision in more detail the selected algorithms and techniques
 Present the work of \cite{Schmitz} where they introduce the approach of semantic self-descriptions to be publish among peers and for which they use a clustering algorithm to obtain that self-description.
 
 
-\subsubsection{Structural similarity clustering entities} \label{structural-similarity}
+\subsubsection{Structural similarity clustering in KG} \label{structural-similarity}
+Elbattah et al. \cite{Elbattah}, in the context of a large scale KG environment, propose a technique which focuses on clustering entities with similar structure. They suggest that is possible to divide entities in a KG into groups forming communities. Hence, those entities are very similar when considering their linked-based structure.
 
+In order to test their hypothesis, they use a subset of knowledge base of Freebase. In this context, they take into account only four different categories of entities (Science \& Technology, Society, Sports, and Time \& Space), and only the ``Is-A" relation among those entities. In this sense, they point out how the algorithm can influence the clustering results in terms of scalability and quality of resulting clusters. For this, they review clustering algorithms, selecting the Louvain algorithm for performing clustering on the Freebase subset.
+They highlight that Louvain algorithm is optimisation-based, therefore less computational demanding. 
+
+The fundamental idea of the Louvain algorithm is the division of each node into a individual community (i.e. the number of communities is equal to the number of nodes) after that calculating the gain in modularity by placing the node into a different community, if the gain is good, then the node is moved to that community. After, a new graph is created with the communities detected in the previous step, and this two steps are repeated until the maximum modularity is reached.
+
+After the clustering, they find that some of the computed clusters were part of larger categories. Moreover, some clusters present a pronounced cross-category structure, meaning that one entity could be part of more that one cluster/category. 
+
+They conclude that the computed clusters are good, based on graph modularity and cluster density. The clusters are then used to get insights and reveal unknown relationships among entities and with this finding new interpretations for the data.
 
 \subsubsection{Entity Clustering using link features} \label{entity-clustering}
 
@@ -157,6 +171,10 @@ Present the work of \cite{Schmitz} where they introduce the approach of semantic
 
 \subsubsection{Topical Clustering of Search Results}
 \cite{Scaiella} contrast/complement with \cite{Schuhmacher}
+
+In: \cite{Elbattah} they mention the study of \cite{Scaiella}: search results clustering (SRC) was endorsed using a representation of texts as graph of concepts or topics. The nodes (topics) represented Wikipedia pages identified by a means of topic annotation applied to search results, and the edges denoted the relatedness among topics. The study proposed an algorithm that used the spectral properties and labels of topics graph. 
+
+\cite{Elbattah} also mentioned the work of \cite{Schuhmacher} as: proposed a graph-based semantic model for representing document content. Their method relied on the use of DBpedia for acquiring knowledge about entities and their semantic relations, then computing a semantic similarity of documents.
 
 
 \begin{center}
