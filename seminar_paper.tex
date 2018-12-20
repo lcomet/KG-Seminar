@@ -142,15 +142,61 @@ a knowledge graph represents knowledge in patterns of interconnected nodes and a
 \todo{mention problems with traditional approaches}
 
 \subsection{Techniques and Algorithms}\label{algorithms}
-Revision in more detail the selected algorithms and techniques 
-
+Here we present in more detail some of the new algorithms and techniques for graph clustering.
 
 \subsubsection{Graph clustering for content aggregation for an Ontology-Based P2PKM}\label{content-aggregation}
-Present the work of \cite{Schmitz} where they introduce the approach of semantic self-descriptions to be publish among peers and for which they use a clustering algorithm to obtain that self-description.
+Schmitz et al. \cite{Schmitz} focus on applying clustering in the context of semantic peer-to-peers systems. More specifically, in a peer-to-peer network with personal knowledge management (P2PPKM) systems. A P2PPKM system consists on a peer-to-peer network where every peer creates and share its own personal knowledge base, and that have a similar function. Moreover, they refer to the network as being self-organized, which means that the network uses routing indices (i.e. each peer stores a view of the content of its neighbors, thus it can decide to which peer derived a query or answer).
+
+Furthermore, what Schmitz et al. \cite{Schmitz} identify as a problem in this type of systems is the lack of expertise or ``semantic self-descriptions" shared among peers (i.e. every peer publishes their whole content but not their most specific knowledge). Hence, they introduce a new technique for knowledge clustering to be applied in P2PPKM systems, which only uses a set of the total knowledge base, containing fewer entities. They indicates that the value of having the expertise information of each peers is that the routing algorithm can know what information can find in the knowledge base of a specific peer.
+
+Moreover, in \cite{Schmitz} they use the concept of ontologies. Hence, each peer share their ontologies (e.g. metadata related to bibliographic information: BibTEX ontology, and a classification scheme). Furthermore, they use the concept of shortest path to measure semantic distance between nodes in the graph.
+
+
+
+
+
+
+
+– The ontologies to be used in P2PKM will be engineered specifically for KM purposes. Thus, regarding a relation between two concepts as an indication that these two have something to do with each other reflects the intention of a knowledge engineer to express relatedness.
+– In a P2PKM system, domain specific ontologies will be used. These represent a conceptualization of a small part of the world which is relevant for the given domain, so that stray associations such as lamp – round glowing object – moon – . . . , which might occur in a “world ontology”, will be avoided.
+– Modeling idiosyncrasies of certain tools and formalisms such as described in the next section need to be anticipated. This can be done by allowing for flexible weighting and filtering strategies.
+To yield max- imum flexibility and to use as much of the modeled content as possible, an edge counting approach was chosen for this paper.
+
+To overcome these problems (Pitfalls on Real-World Ontologies, Noise and Technical Artifacts, Modeling Idiosyncrasies), we have implemented extensive entity filtering and weighting customization strategies which are applied prior to the metric computation itself.
+we will use an extension of k-modes clustering [11] to obtain ag- gregations of knowledge bases.
+The basic version of k-modes clustering for par- titioning a set S of items into k clusters S1,...,Sk such that S = �� ̇ iSi works as follows:
+1. Given k, choose k elements Ci,i = 1...k of S as centroids
+2. Assign each s ∈ S to the cluster Si with i = argminj d(Cj,s)
+3. For i = 1 . . . k, recompute Ci such that �� d(Ci, s) is minimized. s∈Si
+4. Repeat steps 2 and 3 until centroids converge.
+This algorithms yields (locally) optimal centroids which minimize the average distance of each centroid to its cluster members. A variation we will use is bi- section k-modes clustering, which produces k clusters by starting from an initial cluster containing all elements, and then recursively splitting the cluster with the largest variance with 2-modes until k clusters have been reached.
+As the algorithm is randomized, it may happen that a cluster cannot be split although k clusters have not been reached. In that case, we retry a fixed number of times before accepting the clustering.
+
+We use a version of bi-section k-modes clustering for the extraction of such an expertise. As mentioned before, k-modes clustering yields centroids which are locally optimal elements of a set regarding the average distance to their cluster members.
+Using the semantic metric, these centroids fulfill the abovementioned require- ments for an expertise: We can compute a small number of centroids, which are – on the average – semantically close to every member of their respective clusters, thus providing a good aggregation of the knowledge base.
+The set S to be clustered has to consist only of the personal parts PKi of the knowledge bases. Otherwise, the structure of the shared part (which may be comparatively large) will shadow the interesting structures of the personal part.
+– The centroids Ci will not be chosen from the whole knowledge base, but only from the shared part O of the ontology. Otherwise, other peers could not interpret the expertise of a peer.
+The expertise for each knowledge base is obtained by clustering the knowledge base as described, obtaining a set {Ci | i = 1...k} ⊆ O of entities from the ontology as centroids for a given k. The expertise then consists of the pairs {(Ci,|Si|)|i = 1...k} of centroids and cluster sizes. Because we restricted the choice of centroids to be from O, we get expertises that other peers can interpret from clustering the elements of KBi.
+One problem of the k-modes algorithm is that one needs to set the value of k beforehand. As the appropriate number of topics for a given knowledge base may not be known a-priori, we use the silhouette coefficient [12], which is an indicator for the quality of the clustering. In short, it determines how well clusters are separated in terms of the distances of each item to the nearest and the second nearest centroid: if each item is close to its own centroid and far away from the others, the silhouette coefficient will be large, indicating a good clustering.
+To evaluate the usefulness of the expertise extraction approach from the previous sections, we consider a P2PKM scenario with a self-organized semantic topology as described in [20,8,23]: the expertises of peers are stored in routing tables, where similarity computations between queries and expertises in the routing indices are used to make greedy routing decisions when forwarding queries. The evaluation is based on the bibliographic use case mentioned in Section 1: there are scientists in the P2P network sharing bibliographic information about their publications. An ontology according to Figure 1 is used.
+In order to yield interesting knowledge bases to extract expertises from, we pruned the ACM/DBLP data set as described, Thus, only the knowledge bases of authors which have written papers on at least 10 topics were considered.  It can be seen that the full data require querying only a fraction of the authors which is one or two orders of magnitude smaller than the pruned data. This indicates that the first hypothesis holds; the pruning step yields the “hard” instances of the problem.
+Influence of the Expertise Size Intuitively, a larger expertise can contain more information about the knowledge base than a smaller one. In the extreme case, one could use the whole knowledge base as the expertise.
+Influence of the Summarization Strategy the k-modes clustering compares favorably against the other strategies: fewer authors need to be asked in order to find a given proportion of the available papers on a certain topic. This is an indication that the clustering technique will yield expertises which can usefully be applied in a P2PKM system with a forwarding query routing strategy based on routing indices. The different strategies delivered the results shown in Table 5. It can be seen that the clustering strategies find the best balance between spreading the expertise over all occuring topics, and on the other hand generalizing so that many occuring topics are subsumed under one expertise entry. This happens due to the way the clustering strategy spreads the clusters over the ontology graph, maxminizing the coherence within clusters.
+
+
+In this paper, an algorithm which can be used to extract semantic summaries – called expertises – from knowledge bases is proposed. A motivation for the necessity of this kind of summary is given, namely, that such summaries are needed for routing tables in semantic P2P networks.
+We demonstrate that the clustering method outperforms other strategies in terms of queries needed to get a given recall on a set of knowledge bases from a bibliographic scenario. We also show qualitatively that larger knowledge bases are harder to summarize, and that larger expertises are an advantage in determining which peers to query.
+ This paper provides evidence that the clustering proce- dure extracts suitable expertises for a P2PKM setting. 
+Scalability Issues. Computing the metric as described above is very expensive, as it needs to compute all-pairs-shortest-paths. For large ontologies having tens or hundreds of thousands of nodes, this is prohibitively expensive. In the current evaluation, the shortest paths needed are computed on the fly, but for a real- world P2PKM implementation, some faster solution needs to be found. The obvious idea of pre-computing the metric does not mitigate the problem very much, because maintaining the shortest path lengths requires O(n2) storage.
+
+they applied it to: Many use cases for P2PKM have been implemented recently. In the PADLR and ELENA projects1, a P2P infrastructure is established for the exchange of learning material; Bibster2 is a tool for sharing BibTEX entries between re- searchers; the SCAM tool3 for knowledge repositories connects to a P2P net- work. In these systems, each peer builds a knowledge base on top of a common ontology such as LOM and ACM CCS.
+
+The k-modes algorithm (Huang, 1997b) extends the k-means paradigm to cluster categorical data by using (1) a simple matching dissimilarity measure for categorical objects (Kaufman and Rousseeuw, 1990), (2) modes instead of means for clusters and (3) a frequency-based method to update modes in the k-means fashion clustering process to minimise the clustering cost function. \cite{ZHEXUEHUANG}
+
 
 
 \subsubsection{Structural similarity clustering in KG} \label{structural-similarity}
-Elbattah et al. \cite{Elbattah}, suggest that is possible to divide entities in KG into groups forming communities. Hence, in the context of a large scale KG environment, they propose a technique which focuses on clustering entities which are similar when considering their linked-based structure.
+Elbattah et al. \cite{Elbattah} suggest that is possible to divide entities in KG into groups forming communities. Hence, in the context of a large scale KG environment, they propose a technique which focuses on clustering entities which are similar when considering their linked-based structure.
 
 Regarding the clustering process, they remark the importance of selecting the right algorithm. It is critical to consider the algorithm's influence in the quality of resulting clusters, as well as in the scalability. For their particular study, based on reviewed algorithms, they select Louvain clustering algorithm because is requires less computational power comparing with other algorithms, due to its optimization-based nature. Specifically, this algorithm first divide each node into a individual community (i.e. the number of communities is equal to the number of nodes). Then, each node is placed in a different community and the modularity is computed. If the computed modularity \todo{include definition of modularity, reference} is better in a particular community, the node is moved to that one. Finally, the algorithm creates a new graph with all the detected communities. Those steps are repeated until the maximum modularity is reached \cite{Elbattah}.
 
