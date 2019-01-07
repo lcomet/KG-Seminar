@@ -9,6 +9,10 @@
 \usepackage{verbatim}
 \usepackage{caption}
 \usepackage{hyperref}
+\usepackage{tabularx}
+\usepackage{adjustbox}
+
+
 % Used for displaying a sample figure. If possible, figure files should
 % be included in EPS format.
 %
@@ -53,7 +57,7 @@ For these reasons, our contribution in this paper is presenting an overview of t
 
 The structure of this paper is as follows: first, in section \ref{background} we introduce some concepts related to the topic. Then, in section \ref{general-techniques}, we briefly look at some traditional clustering approaches and the common problems on graph clustering (e.g. overlapping). After that, in section \ref{algorithms}, we revise in more details some of the new techniques and algorithms developed for graph clustering in the web.
 
-Finally, in sections \ref{analysis} and \ref{discussion} we critically discuss the different techniques by comparing them, as well as providing suggestion of application areas for the betterment of data grouping. 
+Finally, in sections \ref{analysis} we critically discuss the different techniques by comparing them, as well as providing suggestion of application areas for the betterment of data grouping. 
 
 
 "Popular knowledge graphs in the Web of Data include DBpedia and Yago that combine information about millions of real-world entities (such as persons or locations) of different domains from Wikipedia and other sources. Web search engines such as Google or Bing also integrate information from web pages into their knowledge graphs and use this information to en- hance the search results for web queries." \cite{Saeedi}
@@ -148,9 +152,24 @@ The main steps in the clustering process in this algorithm, as explained in \cit
 
 After the evaluation of the proposed technique, Chang et al. \cite{Chang} conclude that AppGrouper has advantages comparing with other approaches. More specifically, it includes meaningful topic labels describing clusters, it improves the quality of resulting clusters and the computation efficiency by allowing dynamic clustering. Something to remark is that when queries entails broader concepts, the algorithm determines a larger number of clusters. Besides, the proposed technique can also be extended to resolve other SRC problems, for example topic modeling and knowledge extraction \cite{Chang}.
 
-\section{Analysis and comparison of presented approaches} \label{analysis}
+\section{Analysis and Discussion} \label{analysis}
 
-\section{Discussion} \label{discussion}
+\captionof{table}{Comparison of presented approaches} \label{table1}
+\begin{tabular}{ |p{3cm}|p{3cm}|p{3cm}|p{3cm}|}
+ \hline
+\textbf{Algorithm} & \textbf{Input} & \textbf{Measurement}  \textbf{Application} & \textbf{Issues}\\
+ \hline
+ Knowledge Clustering in P2PPKM & Domain specific ontologies & Semantic distance (shortest path) and bi-section k-modes & Content/expertise extraction\\
+ Aland Islands&   AX  & ALA   &248\\
+ Albania &AL & ALB&  008\\
+ Algeria    &DZ & DZA&  012\\
+ American Samoa&   AS  & ASM&016\\
+ Andorra& AD  & AND   &020\\
+ Angola& AO  & AGO&024\\
+ \hline
+\end{tabular}
+
+
 \section{Conclusion} \label{conclusion}
 
 %
